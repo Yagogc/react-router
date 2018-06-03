@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Route, Link } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import { getPlayers } from "../api";
-import { parse } from "query-string";
+import qs from "qs";
 import slug from "slug";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 export default class Players extends Component {
@@ -13,7 +13,7 @@ export default class Players extends Component {
   componentDidMount() {
     const { location } = this.props;
     location.search
-      ? this.fetchPlayers(parse(location.search).teamId)
+      ? this.fetchPlayers(qs.parse(location.search).teamId)
       : this.fetchPlayers();
   }
   fetchPlayers = teamId => {
